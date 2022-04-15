@@ -3,8 +3,8 @@ import sys
 from scipy import ndimage
 
 pixelsPerMeter = 100
-margin = 3 # Meters of margin in the costmap
-trackWidth = 3 # Three meters 
+margin = 3. # Meters of margin in the costmap
+# trackWidth = 3 # Three meters 
 
 
 
@@ -44,15 +44,15 @@ def main(coordsFile):
     yMax = yMax + margin
 
     # Generate the empty map
-    rows = int(round((yMax - yMin) * pixelsPerMeter))
-    cols = int(round((xMax - xMin) * pixelsPerMeter))
+    rows = int(((yMax - yMin) * pixelsPerMeter))
+    cols = int(((xMax - xMin) * pixelsPerMeter))
     channel0 = channel1 = channel2 = channel3 = \
         np.zeros((rows, cols), dtype = np.float32)
     
     # Draw the path
     for i in range(len(coords)):
-        x =  int(round((coords[i][0] - xMin) * pixelsPerMeter))
-        y =  int(round((coords[i][1] - yMin) * pixelsPerMeter))
+        x =  int(((coords[i][0] - xMin) * pixelsPerMeter))
+        y =  int(((coords[i][1] - yMin) * pixelsPerMeter))
         channel0[y,x] = 1.
     
     # Dilate it to form the distance from every point to the path

@@ -13,7 +13,7 @@ def square(costMap,row,col,rad):
             reCol = col - rad + j
             if reRow<0 or reCol <0 or reRow>np.shape(costMap)[0] or reCol>np.shape(costMap)[1]:
                 continue
-            costMap[reRow,reCol]+=50
+            costMap[reRow,reCol]+=3
     
 
     return costMap

@@ -8,7 +8,7 @@ class ScriptToMap(object):
         self.x = self.y = 0
         self.distance = 0.02 #Update the map every 20 mm
         self.fileName = fileName + ".txt"
-        self.sub = rospy.Subscriber("/vrpn_client_node/alec_parkour/pose", PoseStamped, self.handle_pose)
+        self.sub = rospy.Subscriber("/vrpn_client_node/N02/pose", PoseStamped, self.handle_pose)
 
     def handle_pose(self,msg):
         with open(self.fileName,'a') as f:
