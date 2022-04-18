@@ -3,8 +3,8 @@ import sys
 from scipy import ndimage
 
 pixelsPerMeter = 100
-margin = 3. # Meters of margin in the costmap
-# trackWidth = 3 # Three meters 
+margin = 1. # Meters of margin in the costmap
+trackWidth = 0.25 # Three meters 
 
 
 
@@ -72,12 +72,14 @@ def main(coordsFile):
     channel0 = np.absolute(channel0)
 
     # Truncate the closest points to form a nice track
-    # tmp = channel0 <= trackWidth
+    tmp = channel0 <= trackWidth
 
-    # for i in range(np.shape(channel0)[0]):
-    #     for j in range(np.shape(channel0)[1]):
-    #         if tmp[i][j]:
-    #             channel0[i][j] = 0
+    for i in range(np.shape(channel0)[0]):
+        for j in range(np.shape(channel0)[1]):
+            if tmp[i][j]:
+                channel0[i][j] /= trackWidth
+            else:
+                channel0[i][j] += 10
     
     # Save the data in the expected configuration
     channel0 = np.resize(channel0, (1,rows*cols))

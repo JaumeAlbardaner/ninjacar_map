@@ -13,7 +13,7 @@ def square(costMap,row,col,rad):
             reCol = col - rad + j
             if reRow<0 or reCol <0 or reRow>np.shape(costMap)[0] or reCol>np.shape(costMap)[1]:
                 continue
-            costMap[reRow,reCol]+=3
+            costMap[reRow,reCol]+=5
     
 
     return costMap
@@ -30,12 +30,12 @@ def locator(file,x,y):
     yWidth = int((yBounds[1] - yBounds[0]) * pixelsPerMeter)
 
     reMap = np.resize(channel0, (yWidth,xWidth))
-    col=int(round(x*pixelsPerMeter))
-    row=int(round(y*pixelsPerMeter))
+    col=int(round((x- xBounds[0])*pixelsPerMeter))
+    row=int(round((y- yBounds[0])*pixelsPerMeter))
 
     reMap = square(reMap,row,col,5)
 
-    plt.imshow(reMap)
+    plt.imshow(reMap, extent = [xBounds[0],xBounds[1],yBounds[0],yBounds[1]])
     plt.colorbar()
     plt.show()
 
@@ -49,7 +49,7 @@ def main(file):
     xWidth = int((xBounds[1] - xBounds[0]) * pixelsPerMeter)
     yWidth = int((yBounds[1] - yBounds[0]) * pixelsPerMeter)
     reMap = np.resize(channel0, (yWidth,xWidth))
-    plt.imshow(reMap)
+    plt.imshow(reMap, extent = [xBounds[0],xBounds[1],yBounds[0],yBounds[1]])
     plt.colorbar()
     plt.show()
 
