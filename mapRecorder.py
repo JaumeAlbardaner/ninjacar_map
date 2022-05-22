@@ -8,30 +8,12 @@ class ScriptToMap(object):
         self.x = self.y = 0
         self.distance = 0.02 #Update the map every 20 mm
         self.fileName = fileName + ".txt"
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        self.sub = rospy.Subscriber("/odom_reframer/odom_chassis", PoseStamped, self.handle_pose)
-
-    def handle_pose(self,msg):
-        with open(self.fileName,'a') as f:
-            x = msg.pose.position.x
-            y = msg.pose.position.y
-=======
         self.sub = rospy.Subscriber("/odom_reframer/odom_chassis", Odometry, self.handle_pose)
 
     def handle_pose(self,msg):
         with open(self.fileName,'a') as f:
             x = msg.pose.pose.position.x
             y = msg.pose.pose.position.y
->>>>>>> Stashed changes
-=======
-        self.sub = rospy.Subscriber("/odom_reframer/odom_chassis", Odometry, self.handle_pose)
-
-    def handle_pose(self,msg):
-        with open(self.fileName,'a') as f:
-            x = msg.pose.pose.position.x
-            y = msg.pose.pose.position.y
->>>>>>> Stashed changes
             dist = ((x-self.x)**2+(y-self.y)**2)**0.5
             if dist >= self.distance:
                 self.x = x
