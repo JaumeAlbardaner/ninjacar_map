@@ -8,12 +8,12 @@ class ScriptToMap(object):
         self.x = self.y = 0
         self.distance = 0.02 #Update the map every 20 mm
         self.fileName = fileName + ".txt"
-        self.sub = rospy.Subscriber("/vrpn_client_node/N02/pose", PoseStamped, self.handle_pose)
+        self.sub = rospy.Subscriber("/odom_reframer/odom_chassis", PoseStamped, self.handle_pose)
 
     def handle_pose(self,msg):
         with open(self.fileName,'a') as f:
             x = msg.pose.position.x
-            y = msg.pose.position.z
+            y = msg.pose.position.y
             dist = ((x-self.x)**2+(y-self.y)**2)**0.5
             if dist >= self.distance:
                 self.x = x
@@ -37,3 +37,40 @@ if __name__ == '__main__':
         f.close()
         mapper = ScriptToMap(sys.argv[1])
         rospy.spin()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1 - Maybe download video
+2 - Why is wireless optimization number 0 on the index instead of 1 
+3 - How'd you make this presentation
