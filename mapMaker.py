@@ -4,7 +4,7 @@ from scipy import ndimage
 
 pixelsPerMeter = 100
 margin = 1. # Meters of margin in the costmap
-trackWidth = 0.25 # Width on each side of the track 
+trackWidth = 0.75 # Width on each side of the track 
 
 
 

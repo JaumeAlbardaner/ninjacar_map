@@ -6,7 +6,7 @@ class ScriptToMap(object):
 
     def __init__(self, fileName="data"):
         self.x = self.y = 0
-        self.distance = 0.02 #Update the map every 20 mm
+        self.distance = 0.01 #Update the map every 20 mm
         self.fileName = fileName + ".txt"
         self.sub = rospy.Subscriber("/odom_reframer/odom_chassis", Odometry, self.handle_pose)
 
